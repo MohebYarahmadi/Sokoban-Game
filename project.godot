@@ -15,6 +15,11 @@ config/tags=PackedStringArray("jumpstarter")
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="uid://by2d57qwpkxnr"
 
+[autoload]
+
+GameManager="*res://Globals/gameManager.gd"
+LevelData="*res://Globals/levelData.gd"
+
 [display]
 
 window/size/viewport_width=1024
