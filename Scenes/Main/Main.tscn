@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://bd8163sl6xcut"]
+[gd_scene load_steps=3 format=3 uid="uid://bd8163sl6xcut"]
+
+[ext_resource type="Texture2D" uid="uid://w174ug8aapvo" path="res://Assets/img/Gray.png" id="1_qtv3y"]
+[ext_resource type="LabelSettings" uid="uid://b3phwn5fw47br" path="res://Resources/LG_Title_96.tres" id="2_cmk6n"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -7,3 +10,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qtv3y")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VB" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VB"]
+layout_mode = 2
+text = "SOKOBAN"
+label_settings = ExtResource("2_cmk6n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VB"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 6
