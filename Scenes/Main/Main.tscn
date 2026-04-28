@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd8163sl6xcut"]
+[gd_scene load_steps=4 format=3 uid="uid://bd8163sl6xcut"]
 
+[ext_resource type="Script" uid="uid://nhpx45ko8j6d" path="res://Scenes/Main/main.gd" id="1_cmk6n"]
 [ext_resource type="Texture2D" uid="uid://w174ug8aapvo" path="res://Assets/img/Gray.png" id="1_qtv3y"]
 [ext_resource type="LabelSettings" uid="uid://b3phwn5fw47br" path="res://Resources/LG_Title_96.tres" id="2_cmk6n"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cmk6n")
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
