@@ -4,6 +4,7 @@ class_name Level
 
 const SOURCE_ID: int = 0
 
+@onready var player: AnimatedSprite2D = $Player
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var tile_layers: Node2D = $TileLayers
 @onready var floor_tiles: TileMapLayer = $TileLayers/Floor
@@ -12,6 +13,7 @@ const SOURCE_ID: int = 0
 @onready var boxes_tiles: TileMapLayer = $TileLayers/Boxes
 
 var _tile_size: int = 0
+var _player_tile := Vector2i.ZERO
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,6 +27,11 @@ func _ready() -> void:
 	print('level loaded', GameManager.get_level_selected())
 	_tile_size = floor_tiles.tile_set.tile_size.x
 	setupt_level()
+
+
+func place_player_on_tile(tile_coord: Vector2i) -> void:
+	player.position = Vector2(tile_coord * _tile_size)
+	_player_tile = tile_coord
 
 
 func get_atlas_coord(lt: TileLayers.LayerType) -> Vector2i:
@@ -70,6 +77,7 @@ func setupt_level() -> void:
 	setup_layer(TileLayers.LayerType.Targets, targets_tiles, level_layout)
 	setup_layer(TileLayers.LayerType.TargetBoxes, boxes_tiles, level_layout)
 	
+	place_player_on_tile(level_layout.get_player_start())
 	move_camera()
 
 

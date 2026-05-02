@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://ctbngahe53x5b"]
+[gd_scene load_steps=5 format=4 uid="uid://ctbngahe53x5b"]
 
 [ext_resource type="Script" uid="uid://m2xxo5ujoren" path="res://Scenes/Level/level.gd" id="1_3hkb6"]
 [ext_resource type="Texture2D" uid="uid://c2lerbi0ksw1p" path="res://Assets/img/Purple.png" id="1_vbawi"]
 [ext_resource type="TileSet" uid="uid://bg8g4oi0ep7o3" path="res://Resources/tiles.tres" id="3_4dwx7"]
+[ext_resource type="PackedScene" uid="uid://b77y7xtvmat8o" path="res://Scenes/Player/Player.tscn" id="4_qp1lj"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3hkb6")
@@ -39,3 +40,7 @@ tile_set = ExtResource("3_4dwx7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
+
+[node name="Player" parent="." instance=ExtResource("4_qp1lj")]
+position = Vector2(508, 197)
+frame_progress = 0.9762653
