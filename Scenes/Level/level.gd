@@ -4,6 +4,7 @@ class_name Level
 
 const SOURCE_ID: int = 0
 
+@onready var camera_2d: Camera2D = $Camera2D
 @onready var tile_layers: Node2D = $TileLayers
 @onready var floor_tiles: TileMapLayer = $TileLayers/Floor
 @onready var walls_tiles: TileMapLayer = $TileLayers/Walls
@@ -68,9 +69,14 @@ func setupt_level() -> void:
 	setup_layer(TileLayers.LayerType.Boxes, boxes_tiles, level_layout)
 	setup_layer(TileLayers.LayerType.Targets, targets_tiles, level_layout)
 	setup_layer(TileLayers.LayerType.TargetBoxes, boxes_tiles, level_layout)
+	
+	move_camera()
 
 
-
+func move_camera() -> void:
+	var tmr: Rect2i = floor_tiles.get_used_rect()
+	camera_2d.position = tmr.get_center() * _tile_size
+	
 
 
 
