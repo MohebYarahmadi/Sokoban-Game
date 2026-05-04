@@ -41,7 +41,48 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	var move_direction: Vector2i = get_input_direction()
 	if move_direction != Vector2i.ZERO:
-		place_player_on_tile(_player_tile + move_direction)	
+		player_move(move_direction)
+
+
+func cell_is_wall(cell: Vector2i) -> bool:
+	return cell in walls_tiles.get_used_cells()
+
+
+func cell_is_box(cell: Vector2i) -> bool:
+	return cell in boxes_tiles.get_used_cells()
+	
+
+func cell_is_empty(cell: Vector2i) -> bool:
+	return !cell_is_box(cell) and !cell_is_wall(cell)
+
+
+func box_can_move(box_tile: Vector2i, dir: Vector2i) -> bool:
+	return cell_is_empty(box_tile + dir)
+
+
+func move_box(box_tile: Vector2i, md: Vector2i) -> void:
+	var destination: Vector2i = box_tile + md
+	boxes_tiles.erase_cell(box_tile)
+	
+	var tlt: TileLayers.LayerType = TileLayers.LayerType.Boxes
+	
+	if destination in targets_tiles.get_used_cells():
+		tlt = TileLayers.LayerType.TargetBoxes
+	
+	boxes_tiles.set_cell(destination, SOURCE_ID, get_atlas_coord(tlt))
+
+
+
+func player_move(md: Vector2i) -> void:
+	var destination: Vector2i = _player_tile + md
+	
+	# block movement through walls
+	if cell_is_wall(destination): return
+	if cell_is_box(destination) and !box_can_move(destination, md): return	# can't push the box
+	if cell_is_box(destination):	# can move the box
+		move_box(destination, md)
+	
+	place_player_on_tile(destination)	
 
 
 func _ready() -> void:
