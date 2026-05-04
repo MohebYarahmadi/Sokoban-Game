@@ -16,11 +16,32 @@ var _tile_size: int = 0
 var _player_tile := Vector2i.ZERO
 
 
+func get_input_direction() -> Vector2i:
+	var move_direction := Vector2i.ZERO
+	
+	if Input.is_action_just_pressed("ui_left"):
+		move_direction = Vector2i.LEFT
+		player.flip_h = true
+	elif Input.is_action_just_pressed("ui_right"):
+		move_direction = Vector2i.RIGHT
+		player.flip_h = false
+	elif Input.is_action_just_pressed("ui_up"):
+		move_direction = Vector2i.UP
+	elif Input.is_action_just_pressed("ui_down"):
+		move_direction = Vector2i.DOWN
+	
+	return move_direction
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") == true:
 		GameManager.load_main_scene()
 	if event.is_action_pressed("reload") == true:
 		get_tree().reload_current_scene()
+		
+	var move_direction: Vector2i = get_input_direction()
+	if move_direction != Vector2i.ZERO:
+		place_player_on_tile(_player_tile + move_direction)	
 
 
 func _ready() -> void:
