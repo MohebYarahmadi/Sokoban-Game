@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnhnct7qimpna"]
+
+[ext_resource type="Script" uid="uid://3p868p4oliji" path="res://Scenes/GameUi/gameUi.gd" id="1_anb74"]
+[ext_resource type="LabelSettings" uid="uid://dcbl674b8grhc" path="res://Resources/GM_white_32.tres" id="1_mb7aw"]
+
+[node name="GameUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_anb74")
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+
+[node name="VB" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+
+[node name="HB_Level" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="MC/VB/HB_Level"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Level"
+label_settings = ExtResource("1_mb7aw")
+vertical_alignment = 1
+
+[node name="LevelValue" type="Label" parent="MC/VB/HB_Level"]
+layout_mode = 2
+text = "99"
+label_settings = ExtResource("1_mb7aw")
+vertical_alignment = 1
+
+[node name="HB_Moves" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="MovesLabel" type="Label" parent="MC/VB/HB_Moves"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Moves"
+label_settings = ExtResource("1_mb7aw")
+vertical_alignment = 1
+
+[node name="MovesValue" type="Label" parent="MC/VB/HB_Moves"]
+layout_mode = 2
+text = "99"
+label_settings = ExtResource("1_mb7aw")
+vertical_alignment = 1
+
+[node name="HB_Best" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="BestLabel" type="Label" parent="MC/VB/HB_Best"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Best"
+label_settings = ExtResource("1_mb7aw")
+vertical_alignment = 1
+
+[node name="BestValue" type="Label" parent="MC/VB/HB_Best"]
+layout_mode = 2
+text = "-"
+label_settings = ExtResource("1_mb7aw")
+vertical_alignment = 1
