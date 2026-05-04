@@ -14,6 +14,7 @@ const SOURCE_ID: int = 0
 
 var _tile_size: int = 0
 var _player_tile := Vector2i.ZERO
+var _game_over: bool = false
 
 
 func get_input_direction() -> Vector2i:
@@ -38,6 +39,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		GameManager.load_main_scene()
 	if event.is_action_pressed("reload") == true:
 		get_tree().reload_current_scene()
+	
+	if _game_over == true:
+		return
+		
 		
 	var move_direction: Vector2i = get_input_direction()
 	if move_direction != Vector2i.ZERO:
@@ -72,6 +77,12 @@ func move_box(box_tile: Vector2i, md: Vector2i) -> void:
 	boxes_tiles.set_cell(destination, SOURCE_ID, get_atlas_coord(tlt))
 
 
+func check_game_state() -> void:
+	for tile in targets_tiles.get_used_cells():
+		if !cell_is_box(tile):
+			return
+	_game_over = true
+
 
 func player_move(md: Vector2i) -> void:
 	var destination: Vector2i = _player_tile + md
@@ -83,6 +94,7 @@ func player_move(md: Vector2i) -> void:
 		move_box(destination, md)
 	
 	place_player_on_tile(destination)	
+	check_game_state()
 
 
 func _ready() -> void:
