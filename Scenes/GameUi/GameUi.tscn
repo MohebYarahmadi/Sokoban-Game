@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnhnct7qimpna"]
+[gd_scene load_steps=6 format=3 uid="uid://cnhnct7qimpna"]
 
 [ext_resource type="Script" uid="uid://3p868p4oliji" path="res://Scenes/GameUi/gameUi.gd" id="1_anb74"]
 [ext_resource type="LabelSettings" uid="uid://dcbl674b8grhc" path="res://Resources/GM_white_32.tres" id="1_mb7aw"]
+[ext_resource type="Texture2D" uid="uid://dhufxliqltdxf" path="res://Assets/img/panel_beigeLight.png" id="3_tt7lr"]
+[ext_resource type="LabelSettings" uid="uid://3w7lyl3d0x74" path="res://Resources/LG_Blue_48.tres" id="4_5hvfd"]
+[ext_resource type="LabelSettings" path="res://Resources/LG_Red_48.tres" id="5_5hvfd"]
 
 [node name="GameUi" type="Control"]
 layout_mode = 3
@@ -68,4 +71,72 @@ vertical_alignment = 1
 layout_mode = 2
 text = "-"
 label_settings = ExtResource("1_mb7aw")
+vertical_alignment = 1
+
+[node name="GameOverNpr" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -180.0
+offset_right = 280.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_tt7lr")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MC" type="MarginContainer" parent="GameOverNpr"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VB" type="VBoxContainer" parent="GameOverNpr/MC"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="GameOverNpr/MC/VB"]
+layout_mode = 2
+text = "LEVEL COMPLETE!"
+label_settings = ExtResource("4_5hvfd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VB" type="VBoxContainer" parent="GameOverNpr/MC/VB"]
+layout_mode = 2
+
+[node name="MovesLabel" type="Label" parent="GameOverNpr/MC/VB/VB"]
+layout_mode = 2
+text = "You took xxx moves"
+label_settings = ExtResource("1_mb7aw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewRecordLabel" type="Label" parent="GameOverNpr/MC/VB/VB"]
+visible = false
+layout_mode = 2
+text = "A new record!"
+label_settings = ExtResource("5_5hvfd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Label" parent="GameOverNpr/MC/VB/VB"]
+layout_mode = 2
+text = "Press escape"
+label_settings = ExtResource("1_mb7aw")
+horizontal_alignment = 1
 vertical_alignment = 1
