@@ -15,6 +15,8 @@ const SOURCE_ID: int = 0
 var _tile_size: int = 0
 var _player_tile := Vector2i.ZERO
 var _game_over: bool = false
+var _level: String = "1"
+var _moves_made: int = 0
 
 
 func get_input_direction() -> Vector2i:
@@ -82,6 +84,7 @@ func check_game_state() -> void:
 		if !cell_is_box(tile):
 			return
 	_game_over = true
+	var best: bool = GameManager.level_completed(_level, _moves_made)
 
 
 func player_move(md: Vector2i) -> void:
@@ -94,6 +97,7 @@ func player_move(md: Vector2i) -> void:
 		move_box(destination, md)
 	
 	place_player_on_tile(destination)	
+	_moves_made += 1
 	check_game_state()
 
 
@@ -141,8 +145,8 @@ func clear_tiles() -> void:
 
 
 func setupt_level() -> void:
-	var level_number: String = GameManager.get_level_selected()
-	var level_layout: LevelLayout = LevelData.get_level_data(level_number)
+	_level = GameManager.get_level_selected()
+	var level_layout: LevelLayout = LevelData.get_level_data(_level)
 	clear_tiles()
 	
 	setup_layer(TileLayers.LayerType.Floor, floor_tiles, level_layout)
